@@ -24,14 +24,14 @@ class ContactManager:
         try:
             with open(self.filename, 'r') as file:
                 contacts_data = json.load(file)
-                
-            # TODO: Convert dictionaries back to Person objects
-            # This is the next challenge!
-            print(f"Loaded {len(contacts_data)} contacts from {self.filename}")
-            return contacts_data
+
+            # Convert dictionaries back to Person objects
+            self.contacts = [Person.from_dict(contact) for contact in contacts_data]
+            print(f"Loaded {len(self.contacts)} contacts from {self.filename}")
+
         except FileNotFoundError:
             print(f"No existing contacts file found: {self.filename}")
-            return []
+            self.contacts = []
         except Exception as e:
             print(f"Error loading contacts: {e}")
-            return []
+            self.contacts = []

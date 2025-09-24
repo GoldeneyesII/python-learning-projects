@@ -1,0 +1,26 @@
+[
+  {
+    "name": "John Doe",
+    "age": 31,
+    "address": {
+      "number": "123",
+      "street": "Main St",
+      "street2": "",
+      "city": "Spokane",
+      "state": "WA",
+      "zipcode": "99201"
+    }
+  },
+  {
+    "name": "Jane Smith",
+    "age": 22,
+    "address": {
+      "number": "456",
+      "street": "Pine Ave",
+      "street2": "Apt 4B",
+      "city": "Seattle",
+      "state": "WA",
+      "zipcode": "98101"
+    }
+  }
+]

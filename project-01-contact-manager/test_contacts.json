@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Alice",
+    "age": 30,
+    "address": {
+      "number": "123",
+      "street": "First St",
+      "street2": "",
+      "city": "City1",
+      "state": "WA",
+      "zipcode": "12345"
+    }
+  }
+]

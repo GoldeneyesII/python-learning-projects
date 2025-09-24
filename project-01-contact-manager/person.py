@@ -33,6 +33,11 @@ class Address(Serializable):
         lines.append(f"{self.city}, {self.state} {self.zipcode}")
         return "\n".join(lines)
 
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["number"], data["street"], data["city"], data["state"], data["zipcode"], data["street2"])
+
 class Person(Serializable):
     def __init__(self, name, age, address):
         self.name = name
@@ -42,7 +47,7 @@ class Person(Serializable):
     def __str__(self):
         address_lines = str(self.address).split('\n')
         indented_address = '\n    '.join(address_lines)
-        return f"{self.name}:\n  Age: {self.age}\n  Address:\n  {indented_address}\n"
+        return f"{self.name}:\n  Age: {self.age}\n  Address:\n    {indented_address}\n"
     
     def show_address(self):
         message = f"{self.name}\n{self.address}"
@@ -50,3 +55,8 @@ class Person(Serializable):
 
     def is_older_than(self, age=25):
         return self.age > age
+
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["name"], data["age"], Address.from_dict(data["address"]))
