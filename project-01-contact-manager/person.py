@@ -17,11 +17,6 @@ class Serializable:
                     result[key] = str(value)
         return result
 
-    @classmethod
-    def from_dict(cls, data):
-
-
-
 class Address(Serializable):
     def __init__(self, number, street, city, state, zipcode, street2=""):
         self.number = number
@@ -52,7 +47,7 @@ class Person(Serializable):
     def __str__(self):
         address_lines = str(self.address).split('\n')
         indented_address = '\n    '.join(address_lines)
-        return f"{self.name}:\n  Age: {self.age}\n  Address:\n  {indented_address}\n"
+        return f"{self.name}:\n  Age: {self.age}\n  Address:\n    {indented_address}\n"
     
     def show_address(self):
         message = f"{self.name}\n{self.address}"
