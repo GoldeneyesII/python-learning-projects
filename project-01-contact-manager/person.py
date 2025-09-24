@@ -17,6 +17,11 @@ class Serializable:
                     result[key] = str(value)
         return result
 
+    @classmethod
+    def from_dict(cls, data):
+
+
+
 class Address(Serializable):
     def __init__(self, number, street, city, state, zipcode, street2=""):
         self.number = number
@@ -32,6 +37,11 @@ class Address(Serializable):
             lines.append(self.street2)
         lines.append(f"{self.city}, {self.state} {self.zipcode}")
         return "\n".join(lines)
+
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["number"], data["street"], data["city"], data["state"], data["zipcode"], data["street2"])
 
 class Person(Serializable):
     def __init__(self, name, age, address):
@@ -50,3 +60,8 @@ class Person(Serializable):
 
     def is_older_than(self, age=25):
         return self.age > age
+
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["name"], data["age"], Address.from_dict(data["address"]))
