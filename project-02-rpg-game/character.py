@@ -38,3 +38,31 @@ class Character(Serializable, ABC):
 
     def __str__(self):
         return f"{self.__class__.__name__}: {self.name} (HP: {self.health}/{self.max_health}, MP: {self.mana}/{self.max_mana})"
+
+class Warrior(Character):
+    def __init__(self, name, health, attack, defense, mana):
+        super().__init__(name, health, attack, defense, mana)
+
+    def special_ability(self, target=None ):
+        """
+        Disarm - attempts to disarm the targeted enemy.
+        Will finish building once other systems are built fully.
+        """
+        #Check to see if the target is armed
+        #If the target is armed, generate a random number for the disarm value.
+        #Generate a random number for the resist value.
+        #If the disarm value is greater than the resist value, the target drops the weapon.
+        if target is None or not target.is_alive():
+            #Optional - disable the ability to select this as an option.
+            return "Invalid target"
+        
+        if self.mana < 1:
+            #Optional - disable the ability to select this as an option.
+            return "Not enough mana"
+
+        self.mana -= 1
+        # TODO: Implement full disarm when equipment system is ready.
+        
+        print(f"{self.name} attempts ot disarm {target.name}!")
+        disarm_val = random.randint(1,20) #Assigning to variable so value can be logged at a later time for debugging.
+        return f"Disarm was successful!" if disarm_val > target.resist else f"Disarm failed!"
