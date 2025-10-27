@@ -2,7 +2,7 @@ import json
 import random
 from abc import ABC, abstractmethod
 
-class Serialization:
+class Serializable:
 
     def to_dict(self):
         pass
@@ -51,7 +51,7 @@ class Character(Serializable, ABC):
         return f"{self.__class__.__name__}: {self.name} (HP: {self.health}/{self.max_health}, MP: {self.mana}/{self.max_mana})"
 
     def aux_check(self, required):
-        return True if self.(self.auxiliary) >= required else print(f"Not enough {self.auxiliary}")
+        return True if self.auxiliary >= required else print(f"Not enough {self.auxiliary}")
 
 class Warrior(Character):
     def __init__(self, name, health, attack, defense, mana):
@@ -130,16 +130,16 @@ class Rogue(Character):
             match (self.attack - target.defense):
                 case <= 0:
                     weaken = 0
-                0 < case <= 5:
+                case <= 5:
                     weaken = random.randint(1,3)
-                5 < case <= 10:
+                case <= 10:
                     weaken = random.randint(2,5)
-                10 < case <= 20:
+                case <= 20:
                     weaken = random.randint(4,8)
                 default:
                     weaken = 9
 
-                if weaken = 0:
+                if weaken == 0:
                     return "You strike at their kidneys, but they are not effected!"
 
                 target.attack -= weaken
