@@ -24,6 +24,7 @@ class Character(Serializable, ABC):
         self.experience = 0
         self.physical_resistance = 0
         self.magical_resistance = 0
+        self.resist = 0
 
     def take_damage(self, damage):
         # Calculate damage after defense
